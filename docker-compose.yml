@@ -1,0 +1,25 @@
+version: '3.9'
+
+services:
+  db:
+    image: mysql:5
+    restart: always
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: notSecureChangeMe
+
+  # URL: localhost:8181
+  # credentials:
+  # server: db:3306
+  # user: root
+  phpmyadmin:
+    image: phpmyadmin
+    restart: always
+    ports:
+      - "8181:80"
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+      MYSQL_ROOT_PASSWORD: notSecureChangeMe
+      PMA_ARBITRARY: 1
